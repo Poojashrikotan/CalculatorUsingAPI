@@ -1,0 +1,393 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/JQuerry/jquery-3.2.1.min.js"></script>
+    <script src="~/JQuerry/AddHistory.js"></script>
+    <link href="~/Bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Bootstrap/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            getData();
+
+            $("#btnsum").click(function () {
+
+                var num1 = $("#txtnum1").val();
+                var num2 = $("#txtnum2").val();
+
+                $.getJSON("/api/FindSum?firstnum=" + num1 + "&secondnum=" + num2, function (data) {
+                    //    debugger;
+                    $("#result").text("Result is= " + data);
+                    var url = "/api/GetData";
+                    // debugger;
+                    let currentDate = new Date().toJSON().slice(0, 10);
+                    var objdata = {};
+                    objdata.num1 = $("#txtnum1").val();
+                    objdata.num2 = $("#txtnum2").val();
+                    objdata.opt = "SUM";
+                    objdata.res = data;
+                    objdata.ondate = currentDate;
+                    // debugger;
+                    if (objdata) {
+                        // debugger;
+                        $.ajax({
+                            url: url,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify(objdata),
+                            type: "Post",
+
+                            success: function (result) {
+                                //    debugger;
+                                alert(JSON.stringify(result));
+
+                            },
+                            error: function (msg) {
+                                //   debugger;
+                                alert(msg);
+
+
+                            }
+
+
+                        });
+                       // getData();
+                    }
+                })
+            })
+
+            $("#btnsub").click(function () {
+
+                var num1 = $("#txtnum1").val();
+                var num2 = $("#txtnum2").val();
+                //  debugger;
+                $.getJSON("/api/FindSubtract?firstnum=" + num1 + "&secondnum=" + num2, function (data) {
+
+                    $("#result").text("Result is= " + data);
+                   
+                    //   debugger;
+                })
+                var url = "/api/GetData";
+                // debugger;
+                let currentDate = new Date().toJSON().slice(0, 10);
+                var objdata = {};
+                objdata.num1 = $("#txtnum1").val();
+                objdata.num2 = $("#txtnum2").val();
+                objdata.opt = "Subtraction";
+                /*objdata.res = data;*/
+                objdata.ondate = currentDate;
+                debugger;
+                if (objdata) {
+                     debugger;
+                    $.ajax({
+                        url: url,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: JSON.stringify(objdata),
+                        type: "Post",
+
+                        success: function (result) {
+                             debugger;
+                            alert(JSON.stringify(result));
+
+                        },
+                        error: function (msg) {
+                            //  debugger;
+                            alert(msg);
+
+
+                        }
+
+
+                    });
+                }
+
+
+            })
+            $("#btnmul").click(function () {
+
+                var num1 = $("#txtnum1").val();
+                var num2 = $("#txtnum2").val();
+                //  debugger;
+                $.getJSON("/api/FindMultiply?firstnum=" + num1 + "&secondnum=" + num2, function (data) {
+
+                    $("#result").text("Result is = " + data);
+
+                    let currentDate = new Date().toJSON().slice(0, 10);
+                    var objdata = {};
+                    objdata.num1 = $("#txtnum1").val();
+                    objdata.num2 = $("#txtnum2").val();
+                    objdata.opt = "Multiplication";
+                    objdata.res = data;
+                    objdata.ondate = currentDate;
+                    // debugger;
+                    if (objdata) {
+                        //  debugger;
+                        $.ajax({
+                            url: url,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify(objdata),
+                            type: "Post",
+
+                            success: function (result) {
+                                //  debugger;
+                                alert(result);
+
+                            },
+                            error: function (msg) {
+                                //   debugger;
+                                alert(msg);
+
+
+                            }
+
+
+                        });
+                    }
+                    //   debugger;
+                })
+
+            })
+            $("#btndivide").click(function () {
+
+                var num1 = $("#txtnum1").val();
+                var num2 = $("#txtnum2").val();
+                //  debugger;
+                $.getJSON("/api/FindDivision?firstnum=" + num1 + "&secondnum=" + num2, function (data) {
+
+                    $("#result").text("Result is= " + data);
+                    //   debugger;
+                    var url = "/api/GetData";
+
+                    let currentDate = new Date().toJSON().slice(0, 10);
+                    var objdata = {};
+                    objdata.num1 = $("#txtnum1").val();
+                    objdata.num2 = $("#txtnum2").val();
+                    objdata.opt = "Division";
+                    objdata.res = data;
+                    objdata.ondate = currentDate;
+                    // debugger;
+                    if (objdata) {
+                        // debugger;
+                        $.ajax({
+                            url: url,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify(objdata),
+                            type: "Post",
+
+                            success: function (result) {
+                                //   debugger;
+                                alert(result);
+
+                            },
+                            error: function (msg) {
+                                //  debugger;
+                                alert(msg);
+
+
+                            }
+
+
+                        });
+                    }
+                })
+
+            })
+        })
+        function getData() {
+            // debugger;
+            var url = "/api/GetData";
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: "Get",
+
+                success: function (result) {
+                    // debugger;
+                    if (result) {
+                        var row = '';
+                        for (let i = 0; i < result.length; i++) {
+                            row = row + "<tr>" +
+                                "<td>" + result[i].id + "</td>"
+                                + "<td>" + result[i].num1 + "</td>"
+                                + "<td>" + result[i].num2 + "</td>"
+                                + "<td>" + result[i].opt + "</td>"
+                                + "<td>" + result[i].res + "</td>"
+                                + "<td>" + result[i].ondate + "</td>"
+
+                                + "</tr>";
+                        }
+                    }
+                    if (row != '') {
+                        $('#tbldata').append(row);
+                    }
+                    /*   alert(result);*/
+
+                },
+                error: function (msg) {
+                    debugger;
+                    alert(msg);
+
+
+                }
+
+
+            });
+        }
+    </script>
+    <style>
+        .card {
+            padding: 50px;
+            border: 2px solid blue;
+            width: 600px;
+            border-radius: 5px;
+            align-content: center;
+            text-align: center;
+            justify-content: center;
+            margin-left: 100px;
+            margin-top: 50px;
+        }
+
+
+        .button {
+            color: white;
+            font-size: 15px;
+            padding: 6px;
+            width: 100px;
+            border-radius: 5px;
+            background-color: blue;
+            border-color: blue;
+        }
+
+        .head {
+            font-weight: 500;
+            font-style: initial
+        }
+
+        .result {
+            border: groove;
+            font-weight: 500;
+            font-style: initial;
+            padding-top: 20px;
+            margin: 8px;
+        }
+
+        .grid {
+            overflow: auto;
+        }
+
+            .grid th {
+                padding: 10px;
+                font-size: 15px;
+                text-align: center;
+                font-weight: bold;
+                color: black;
+                background-color: #EEEEEE;
+            }
+
+            .grid td {
+                padding: 4px;
+                font-size: 14px;
+            }
+
+            .grid th, .grid td {
+                border: unset;
+                border-bottom: 0.5px solid #cdcdcd !important;
+                border-right: 0.5px solid #cdcdcd !important;
+                border-top: 0.5px solid #cdcdcd !important;
+                border-bottom: 0.5px solid #cdcdcd !important;
+            }
+
+            .grid tr th {
+                position: sticky;
+                top: -1px;
+                /* left: -1px;
+                right: -1px;*/
+                z-index: 1;
+            }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2 class="head">Personal Calculator </h2>
+        <table>
+            <tr>
+                <td>
+                    <label class="head">Enter FirstNumber</label>
+                </td>
+                <td>
+                    <input type="text" id="txtnum1" class="form-control" name="num1" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="head">Enter SecondNumber</label>
+                </td>
+                <td>
+                    <input type="text" id="txtnum2" class="form-control" name="num2" value="" />
+                </td>
+            </tr>
+        </table>
+
+        <div style="padding-left:40px;padding-top:10px;">
+            <table>
+                <tr>
+                    <td>
+                        <input type="button" class="button" name="sum" id="btnsum" value="Add" onclick="addHistory();" />
+                    </td>
+                    <td>
+                        <input type="button" class="button" name="subtract" id="btnsub" value="Subtract" />
+                    </td>
+                    <td>
+
+                        <input type="button" class="button" name="multiply" id="btnmul" value="Multiply" />
+                    </td>
+                    <td>
+                        <input type="button" class="button" name="divide" id="btndivide" value="Divide" />
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+        <div class="result">
+            <span id="result"></span>
+        </div>
+    </div>
+    <div style="margin-left:100px;margin-top:10px">
+        <input type="button" class="button" name="data" id="btndata" hidden="hidden" value="History Data" onclick="getData();" />
+
+        <table class="grid" style="width:50%">
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>Number1</th>
+                    <th>Number2</th>
+                    <th>Operation</th>
+                    <th>Result</th>
+                    <th>Created On</th>
+                </tr>
+
+            </thead>
+            <tbody id="tbldata">
+            </tbody>
+
+        </table>
+    </div>
+
+
+
+</body>
+</html>
