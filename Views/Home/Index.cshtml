@@ -22,17 +22,20 @@
 
                 var num1 = $("#txtnum1").val();
                 var num2 = $("#txtnum2").val();
-
+                //calling api with 2numbers as input
                 $.getJSON("/api/FindSum?firstnum=" + num1 + "&secondnum=" + num2, function (data) {
-                    //    debugger;
                     $("#result").text("Result is= " + data);
+
+
+                    //Inserting data to DB using ajax
                     var url = "/api/GetData";
                     // debugger;
                     let currentDate = new Date().toJSON().slice(0, 10);
                     var objdata = {};
+                    objdata.id = 190;
                     objdata.num1 = $("#txtnum1").val();
                     objdata.num2 = $("#txtnum2").val();
-                    objdata.opt = "SUM";
+                    objdata.opt = "Addition";
                     objdata.res = data;
                     objdata.ondate = currentDate;
                     // debugger;
@@ -48,18 +51,13 @@
                             success: function (result) {
                                 //    debugger;
                                 alert(JSON.stringify(result));
-
                             },
                             error: function (msg) {
                                 //   debugger;
                                 alert(msg);
-
-
                             }
-
-
                         });
-                       // getData();
+                        // getData();
                     }
                 })
             })
@@ -70,47 +68,39 @@
                 var num2 = $("#txtnum2").val();
                 //  debugger;
                 $.getJSON("/api/FindSubtract?firstnum=" + num1 + "&secondnum=" + num2, function (data) {
-
                     $("#result").text("Result is= " + data);
-                   
-                    //   debugger;
+
+                    var url = "/api/GetData";
+                    // debugger;
+                    let currentDate = new Date().toJSON().slice(0, 10);
+                    var objdata = {};
+                    objdata.id = 100;
+                    objdata.num1 = $("#txtnum1").val();
+                    objdata.num2 = $("#txtnum2").val();
+                    objdata.opt = "Subtraction";
+                    objdata.res = data;
+                    objdata.ondate = currentDate;
+                    debugger;
+                    if (objdata) {
+                        debugger;
+                        $.ajax({
+                            url: url,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify(objdata),
+                            type: "Post",
+
+                            success: function (result) {
+                                alert(JSON.stringify(result));
+
+                            },
+                            error: function (msg) {
+                                //  debugger;
+                                alert(msg);
+                            }
+                        });
+                    }
                 })
-                var url = "/api/GetData";
-                // debugger;
-                let currentDate = new Date().toJSON().slice(0, 10);
-                var objdata = {};
-                objdata.num1 = $("#txtnum1").val();
-                objdata.num2 = $("#txtnum2").val();
-                objdata.opt = "Subtraction";
-                /*objdata.res = data;*/
-                objdata.ondate = currentDate;
-                debugger;
-                if (objdata) {
-                     debugger;
-                    $.ajax({
-                        url: url,
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        data: JSON.stringify(objdata),
-                        type: "Post",
-
-                        success: function (result) {
-                             debugger;
-                            alert(JSON.stringify(result));
-
-                        },
-                        error: function (msg) {
-                            //  debugger;
-                            alert(msg);
-
-
-                        }
-
-
-                    });
-                }
-
-
             })
             $("#btnmul").click(function () {
 
@@ -123,12 +113,12 @@
 
                     let currentDate = new Date().toJSON().slice(0, 10);
                     var objdata = {};
+                    objdata.id = 122;
                     objdata.num1 = $("#txtnum1").val();
                     objdata.num2 = $("#txtnum2").val();
                     objdata.opt = "Multiplication";
                     objdata.res = data;
                     objdata.ondate = currentDate;
-                    // debugger;
                     if (objdata) {
                         //  debugger;
                         $.ajax({
@@ -146,36 +136,28 @@
                             error: function (msg) {
                                 //   debugger;
                                 alert(msg);
-
-
                             }
-
-
                         });
                     }
-                    //   debugger;
                 })
-
             })
             $("#btndivide").click(function () {
 
                 var num1 = $("#txtnum1").val();
                 var num2 = $("#txtnum2").val();
-                //  debugger;
                 $.getJSON("/api/FindDivision?firstnum=" + num1 + "&secondnum=" + num2, function (data) {
 
                     $("#result").text("Result is= " + data);
-                    //   debugger;
                     var url = "/api/GetData";
 
                     let currentDate = new Date().toJSON().slice(0, 10);
                     var objdata = {};
+                    objdata.id = 87;
                     objdata.num1 = $("#txtnum1").val();
                     objdata.num2 = $("#txtnum2").val();
                     objdata.opt = "Division";
                     objdata.res = data;
                     objdata.ondate = currentDate;
-                    // debugger;
                     if (objdata) {
                         // debugger;
                         $.ajax({
@@ -191,13 +173,8 @@
 
                             },
                             error: function (msg) {
-                                //  debugger;
                                 alert(msg);
-
-
                             }
-
-
                         });
                     }
                 })
@@ -212,7 +189,6 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 type: "Get",
-
                 success: function (result) {
                     // debugger;
                     if (result) {
@@ -238,11 +214,7 @@
                 error: function (msg) {
                     debugger;
                     alert(msg);
-
-
                 }
-
-
             });
         }
     </script>

@@ -12,8 +12,8 @@ namespace CalculatingApp.Controllers
         [HttpGet]
         public string GetNumber(string firstnum, string secondnum)
         {
-            int c = Convert.ToInt16(firstnum) - Convert.ToInt16(secondnum);
-            return (c.ToString());
+            int res = Convert.ToInt16(firstnum) - Convert.ToInt16(secondnum);
+            return (res.ToString());
         }
     }
 }
