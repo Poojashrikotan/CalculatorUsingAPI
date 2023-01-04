@@ -16,6 +16,8 @@
 
     <script>
         $(document).ready(function () {
+            //var tb= document.getElementById("hide");
+            //tb.style.display = "none";
             getData();
 
             $("#btnsum").click(function () {
@@ -37,9 +39,9 @@
                     objdata.opt = "Addition";
                     objdata.res = data;
                     objdata.ondate = currentDate;
-                    debugger;
+                   // debugger;
                     if (objdata) {
-                         debugger;
+                      //   debugger;
                         $.ajax({
                             url: url,
                             contentType: "application/json; charset=utf-8",
@@ -48,17 +50,18 @@
                             type: "Post",
 
                             success: function (response) {
-                                   debugger;
+                                 //  debugger;
                                 alert(response);
                             },
                             error: function (msg) {
-                                  debugger;
+                                 // debugger;
                                 alert(msg);
                             }
                         });
-                        // getData();
+                       
                     }
                 })
+               
             })
 
             $("#btnsub").click(function () {
@@ -78,9 +81,9 @@
                     objdata.opt = "Subtraction";
                     objdata.res = data;
                     objdata.ondate = currentDate;
-                    debugger;
+                    //debugger;
                     if (objdata) {
-                        debugger;
+                       // debugger;
                         $.ajax({
                             url: url,
                             contentType: "application/json; charset=utf-8",
@@ -89,11 +92,10 @@
                             type: "Post",
 
                             success: function (result) {
-                                alert(JSON.stringify(result));
+                                alert(result);
 
                             },
                             error: function (msg) {
-                                //  debugger;
                                 alert(msg);
                             }
                         });
@@ -179,7 +181,9 @@
             })
         })
         function getData() {
-            // debugger;
+            //// debugger;
+            //var tb= document.getElementById("hide");
+            //tb.style.display = "block";
             var url = "/api/GetData";
             $.ajax({
                 url: url,
@@ -205,11 +209,8 @@
                     if (row != '') {
                         $('#tbldata').append(row);
                     }
-                    /*   alert(result);*/
-
                 },
                 error: function (msg) {
-                    debugger;
                     alert(msg);
                 }
             });
@@ -313,7 +314,7 @@
             <table>
                 <tr>
                     <td>
-                        <input type="button" class="button" name="sum" id="btnsum" value="Add" onclick="addHistory();" />
+                        <input type="button" class="button" name="sum" id="btnsum" value="Add"  />
                     </td>
                     <td>
                         <input type="button" class="button" name="subtract" id="btnsub" value="Subtract" />
@@ -335,10 +336,13 @@
     </div>
     <div style="margin-left:100px;margin-top:10px">
         <input type="button" class="button" name="data" id="btndata" value="History Data" onclick="getData();" />
+  
 
-        <table class="grid" style="width:50%">
+        </div>
+    <div style="margin-left:100px;margin-top:10px">
+        <table class="grid" style="width:50%" >
             <thead>
-                <tr>
+                <tr id="hide">
                     <th>
                         Id
                     </th>
