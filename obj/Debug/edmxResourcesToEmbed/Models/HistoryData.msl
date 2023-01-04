@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Entities1">
-    <EntitySetMapping Name="Calculations">
-      <EntityTypeMapping TypeName="Model1.Calculation">
-        <MappingFragment StoreEntitySet="Calculation">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities2">
+    <EntitySetMapping Name="Calculators">
+      <EntityTypeMapping TypeName="Model.Calculator">
+        <MappingFragment StoreEntitySet="Calculator">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="num1" ColumnName="num1" />
           <ScalarProperty Name="num2" ColumnName="num2" />

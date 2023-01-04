@@ -13,10 +13,10 @@ namespace CalculatingApp.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities1 : DbContext
+    public partial class Entities2 : DbContext
     {
-        public Entities1()
-            : base("name=Entities1")
+        public Entities2()
+            : base("name=Entities2")
         {
         }
     
@@ -25,6 +25,6 @@ namespace CalculatingApp.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Calculation> Calculations { get; set; }
+        public virtual DbSet<Calculator> Calculators { get; set; }
     }
 }

@@ -138,7 +138,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Calculation.cs">
+    <Compile Include="Models\Calculator.cs">
       <DependentUpon>HistoryData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HistoryData.Context.cs">

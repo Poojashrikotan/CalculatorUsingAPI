@@ -4,49 +4,49 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Calculation">
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Calculator">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="num1" Type="int" />
-          <Property Name="num2" Type="int" />
-          <Property Name="opt" Type="nvarchar" MaxLength="50" />
-          <Property Name="res" Type="int" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="num1" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="num2" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="opt" Type="nvarchar" MaxLength="100" />
+          <Property Name="res" Type="numeric" Precision="18" Scale="0" />
           <Property Name="ondate" Type="datetime" />
         </EntityType>
-        <EntityContainer Name="Model1StoreContainer">
-          <EntitySet Name="Calculation" EntityType="Self.Calculation" Schema="dbo" store:Type="Tables" />
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Calculator" EntityType="Self.Calculator" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Calculation">
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Calculator">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="num1" Type="Int32" />
-          <Property Name="num2" Type="Int32" />
-          <Property Name="opt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="res" Type="Int32" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="num1" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="num2" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="opt" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="res" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="ondate" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Calculations" EntityType="Self.Calculation" />
+        <EntityContainer Name="Entities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Calculators" EntityType="Self.Calculator" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Entities1">
-          <EntitySetMapping Name="Calculations">
-            <EntityTypeMapping TypeName="Model1.Calculation">
-              <MappingFragment StoreEntitySet="Calculation">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities2">
+          <EntitySetMapping Name="Calculators">
+            <EntityTypeMapping TypeName="Model.Calculator">
+              <MappingFragment StoreEntitySet="Calculator">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="num1" ColumnName="num1" />
                 <ScalarProperty Name="num2" ColumnName="num2" />

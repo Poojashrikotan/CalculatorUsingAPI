@@ -32,15 +32,14 @@
                     // debugger;
                     let currentDate = new Date().toJSON().slice(0, 10);
                     var objdata = {};
-                    objdata.id = 190;
                     objdata.num1 = $("#txtnum1").val();
                     objdata.num2 = $("#txtnum2").val();
                     objdata.opt = "Addition";
                     objdata.res = data;
                     objdata.ondate = currentDate;
-                    // debugger;
+                    debugger;
                     if (objdata) {
-                        // debugger;
+                         debugger;
                         $.ajax({
                             url: url,
                             contentType: "application/json; charset=utf-8",
@@ -48,12 +47,12 @@
                             data: JSON.stringify(objdata),
                             type: "Post",
 
-                            success: function (result) {
-                                //    debugger;
-                                alert(JSON.stringify(result));
+                            success: function (response) {
+                                   debugger;
+                                alert(response);
                             },
                             error: function (msg) {
-                                //   debugger;
+                                  debugger;
                                 alert(msg);
                             }
                         });
@@ -74,7 +73,6 @@
                     // debugger;
                     let currentDate = new Date().toJSON().slice(0, 10);
                     var objdata = {};
-                    objdata.id = 100;
                     objdata.num1 = $("#txtnum1").val();
                     objdata.num2 = $("#txtnum2").val();
                     objdata.opt = "Subtraction";
@@ -111,9 +109,9 @@
 
                     $("#result").text("Result is = " + data);
 
+                    var url = "/api/GetData";
                     let currentDate = new Date().toJSON().slice(0, 10);
                     var objdata = {};
-                    objdata.id = 122;
                     objdata.num1 = $("#txtnum1").val();
                     objdata.num2 = $("#txtnum2").val();
                     objdata.opt = "Multiplication";
@@ -152,7 +150,6 @@
 
                     let currentDate = new Date().toJSON().slice(0, 10);
                     var objdata = {};
-                    objdata.id = 87;
                     objdata.num1 = $("#txtnum1").val();
                     objdata.num2 = $("#txtnum2").val();
                     objdata.opt = "Division";
@@ -337,7 +334,7 @@
         </div>
     </div>
     <div style="margin-left:100px;margin-top:10px">
-        <input type="button" class="button" name="data" id="btndata" hidden="hidden" value="History Data" onclick="getData();" />
+        <input type="button" class="button" name="data" id="btndata" value="History Data" onclick="getData();" />
 
         <table class="grid" style="width:50%">
             <thead>

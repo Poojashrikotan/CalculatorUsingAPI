@@ -12,13 +12,13 @@ namespace CalculatingApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Calculation
+    public partial class Calculator
     {
         public int id { get; set; }
-        public Nullable<int> num1 { get; set; }
-        public Nullable<int> num2 { get; set; }
+        public Nullable<decimal> num1 { get; set; }
+        public Nullable<decimal> num2 { get; set; }
         public string opt { get; set; }
-        public Nullable<int> res { get; set; }
+        public Nullable<decimal> res { get; set; }
         public Nullable<System.DateTime> ondate { get; set; }
     }
 }

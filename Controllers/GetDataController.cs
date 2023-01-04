@@ -11,24 +11,24 @@ namespace CalculatingApp.Controllers
 {
     public class GetDataController : ApiController
     {
-        Entities1 db = new Entities1();
+        Entities2 db = new Entities2();
 
         //Add post request
-        [HttpPost]
-        public string Post(Calculation calc)
+     
+        public string Post(Calculator calc)
         {
-            db.Calculations.Add(calc);
+            db.Calculators.Add(calc);
             db.SaveChanges();
             return "Data Added";
           
 
         }
-        [HttpGet]
+      
         //Get all HistoryData
-        public IEnumerable<Calculation> Get()
+        public IEnumerable<Calculator> Get()
         {
            
-            return db.Calculations.ToList();
+            return db.Calculators.ToList();
          
         }
     }
