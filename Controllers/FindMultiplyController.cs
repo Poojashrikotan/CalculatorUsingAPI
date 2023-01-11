@@ -10,9 +10,17 @@ namespace CalculatingApp.Controllers
     public class FindMultiplyController : ApiController
     {
         [HttpGet]
-        public string GetNumber(string firstnum, string secondnum)
+        public string GetNumber(string firstnumber, string secondnumber)
         {
-            int res = Convert.ToInt16(firstnum) * Convert.ToInt16(secondnum);
+            double res = 0;
+            try
+            {
+                res = Convert.ToDouble(firstnumber) * Convert.ToDouble(secondnumber);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             return (res.ToString());
         }
     }

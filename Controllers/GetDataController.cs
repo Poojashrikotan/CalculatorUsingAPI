@@ -11,25 +11,33 @@ namespace CalculatingApp.Controllers
 {
     public class GetDataController : ApiController
     {
-        Entities2 db = new Entities2();
+        Entities3 db = new Entities3();
 
         //Add post request
-     
-        public string Post(Calculator calc)
-        {
-            db.Calculators.Add(calc);
-            db.SaveChanges();
-            return "Data Added";
-          
 
-        }
-      
-        //Get all HistoryData
-        public IEnumerable<Calculator> Get()
+        public string Post(CalculatingData calc)
         {
+            try
+            {
+                if (calc.firstnumber != null && calc.secondnumber != null)
+                {
+                    db.CalculatingDatas.Add(calc);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return "Data Added";
+        }
+
+        //Get all HistoryData
+        public IEnumerable<CalculatingData> Get()
+        {
+               return db.CalculatingDatas.ToList();
            
-            return db.Calculators.ToList();
-         
         }
     }
 }

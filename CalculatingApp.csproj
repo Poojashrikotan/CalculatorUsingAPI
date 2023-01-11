@@ -124,6 +124,16 @@
       <DependentUpon>HistoryData.edmx</DependentUpon>
       <LastGenOutput>HistoryData.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\HistoryDetails.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HistoryDetails.edmx</DependentUpon>
+      <LastGenOutput>HistoryDetails.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\HistoryDetails.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HistoryDetails.edmx</DependentUpon>
+      <LastGenOutput>HistoryDetails.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +147,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CalculatingData.cs">
+      <DependentUpon>HistoryDetails.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Calculator.cs">
       <DependentUpon>HistoryData.tt</DependentUpon>
@@ -156,6 +169,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HistoryData.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\HistoryDetails.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HistoryDetails.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HistoryDetails.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HistoryDetails.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HistoryDetails.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HistoryDetails.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +194,13 @@
     </EntityDeploy>
     <Content Include="Models\HistoryData.edmx.diagram">
       <DependentUpon>HistoryData.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\HistoryDetails.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HistoryDetails.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\HistoryDetails.edmx.diagram">
+      <DependentUpon>HistoryDetails.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />

@@ -9,8 +9,8 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+
     <script src="~/JQuerry/jquery-3.2.1.min.js"></script>
-    <script src="~/JQuerry/AddHistory.js"></script>
     <link href="~/Bootstrap/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Bootstrap/bootstrap.min.js"></script>
 
@@ -25,23 +25,23 @@
                 var num1 = $("#txtnum1").val();
                 var num2 = $("#txtnum2").val();
                 //calling api with 2numbers as input
-                $.getJSON("/api/FindSum?firstnum=" + num1 + "&secondnum=" + num2, function (data) {
+                $.getJSON("/api/FindSum?firstnumber=" + num1 + "&secondnumber=" + num2, function (data) {
                     $("#result").text("Result is= " + data);
 
-
-                    //Inserting data to DB using ajax
+                    //Passing data to GetData API using ajax
                     var url = "/api/GetData";
                     // debugger;
+                    var date = new Date();
                     let currentDate = new Date().toJSON().slice(0, 10);
                     var objdata = {};
-                    objdata.num1 = $("#txtnum1").val();
-                    objdata.num2 = $("#txtnum2").val();
-                    objdata.opt = "Addition";
-                    objdata.res = data;
-                    objdata.ondate = currentDate;
-                   // debugger;
+                    objdata.firstnumber = $("#txtnum1").val();
+                    objdata.secondnumber = $("#txtnum2").val();
+                    objdata.operation = "Addition";
+                    objdata.result = data;
+                    objdata.CreatedOn = date.toLocaleString();
+                    // debugger;
                     if (objdata) {
-                      //   debugger;
+                        //   debugger;
                         $.ajax({
                             url: url,
                             contentType: "application/json; charset=utf-8",
@@ -50,18 +50,18 @@
                             type: "Post",
 
                             success: function (response) {
-                                 //  debugger;
+                                //  debugger;
                                 alert(response);
                             },
                             error: function (msg) {
-                                 // debugger;
+                                // debugger;
                                 alert(msg);
                             }
                         });
-                       
+
                     }
                 })
-               
+
             })
 
             $("#btnsub").click(function () {
@@ -69,21 +69,23 @@
                 var num1 = $("#txtnum1").val();
                 var num2 = $("#txtnum2").val();
                 //  debugger;
-                $.getJSON("/api/FindSubtract?firstnum=" + num1 + "&secondnum=" + num2, function (data) {
+                $.getJSON("/api/FindSubtract?firstnumber=" + num1 + "&secondnumber=" + num2, function (data) {
                     $("#result").text("Result is= " + data);
-
-                    var url = "/api/GetData";
                     // debugger;
+
+                    //Passing data to GetData API using ajax
+                    var url = "/api/GetData";
                     let currentDate = new Date().toJSON().slice(0, 10);
+                    var date = new Date();
                     var objdata = {};
-                    objdata.num1 = $("#txtnum1").val();
-                    objdata.num2 = $("#txtnum2").val();
-                    objdata.opt = "Subtraction";
-                    objdata.res = data;
-                    objdata.ondate = currentDate;
+                    objdata.firstnumber = $("#txtnum1").val();
+                    objdata.secondnumber = $("#txtnum2").val();
+                    objdata.operation = "Subtraction";
+                    objdata.result = data;
+                    objdata.CreatedOn = date.toLocaleString();
                     //debugger;
                     if (objdata) {
-                       // debugger;
+                        // debugger;
                         $.ajax({
                             url: url,
                             contentType: "application/json; charset=utf-8",
@@ -102,23 +104,30 @@
                     }
                 })
             })
+
             $("#btnmul").click(function () {
 
                 var num1 = $("#txtnum1").val();
                 var num2 = $("#txtnum2").val();
-                //  debugger;
-                $.getJSON("/api/FindMultiply?firstnum=" + num1 + "&secondnum=" + num2, function (data) {
+                //if ($("#txtnum1").val() == null && $("#txtnum2").val() == null) {
+                //    debugger;
+                //    alert("Please Enter Numbers");
+                //}
+
+                $.getJSON("/api/FindMultiply?firstnumber=" + num1 + "&secondnumber=" + num2, function (data) {
 
                     $("#result").text("Result is = " + data);
 
+                    //Passing data to GetData API using ajax
                     var url = "/api/GetData";
                     let currentDate = new Date().toJSON().slice(0, 10);
+                    var date = new Date();
                     var objdata = {};
-                    objdata.num1 = $("#txtnum1").val();
-                    objdata.num2 = $("#txtnum2").val();
-                    objdata.opt = "Multiplication";
-                    objdata.res = data;
-                    objdata.ondate = currentDate;
+                    objdata.firstnumber = $("#txtnum1").val();
+                    objdata.secondnumber = $("#txtnum2").val();
+                    objdata.operation = "Multiplication";
+                    objdata.result = data;
+                    objdata.CreatedOn = date.toLocaleString();
                     if (objdata) {
                         //  debugger;
                         $.ajax({
@@ -140,23 +149,27 @@
                         });
                     }
                 })
+
             })
+
             $("#btndivide").click(function () {
 
                 var num1 = $("#txtnum1").val();
                 var num2 = $("#txtnum2").val();
-                $.getJSON("/api/FindDivision?firstnum=" + num1 + "&secondnum=" + num2, function (data) {
+                $.getJSON("/api/FindDivision?firstnumber=" + num1 + "&secondnumber=" + num2, function (data) {
 
                     $("#result").text("Result is= " + data);
-                    var url = "/api/GetData";
 
+                    //Passing data to GetData API using ajax
+                    var url = "/api/GetData";
                     let currentDate = new Date().toJSON().slice(0, 10);
+                    var date = new Date();
                     var objdata = {};
-                    objdata.num1 = $("#txtnum1").val();
-                    objdata.num2 = $("#txtnum2").val();
-                    objdata.opt = "Division";
-                    objdata.res = data;
-                    objdata.ondate = currentDate;
+                    objdata.firstnumber = $("#txtnum1").val();
+                    objdata.secondnumber = $("#txtnum2").val();
+                    objdata.operation = "Division";
+                    objdata.result = data;
+                    objdata.CreatedOn = date.toLocaleString();
                     if (objdata) {
                         // debugger;
                         $.ajax({
@@ -180,6 +193,7 @@
 
             })
         })
+
         function getData() {
             //// debugger;
             //var tb= document.getElementById("hide");
@@ -196,18 +210,20 @@
                         var row = '';
                         for (let i = 0; i < result.length; i++) {
                             row = row + "<tr>" +
-                                "<td>" + result[i].id + "</td>"
-                                + "<td>" + result[i].num1 + "</td>"
-                                + "<td>" + result[i].num2 + "</td>"
-                                + "<td>" + result[i].opt + "</td>"
-                                + "<td>" + result[i].res + "</td>"
-                                + "<td>" + result[i].ondate + "</td>"
-
+                                "<td>" + result[i].ID + "</td>"
+                                + "<td>" + result[i].firstnumber + "</td>"
+                                + "<td>" + result[i].secondnumber + "</td>"
+                                + "<td>" + result[i].operation + "</td>"
+                                + "<td>" + result[i].result + "</td>"
+                                + "<td>" + result[i].CreatedOn + "</td>"
                                 + "</tr>";
                         }
                     }
                     if (row != '') {
                         $('#tbldata').append(row);
+                    }
+                    else {
+                        $('#tbldata').append("NO DATA FOUND...!!!");
                     }
                 },
                 error: function (msg) {
@@ -215,7 +231,16 @@
                 }
             });
         }
+
+        function clear() {
+            debugger;
+            var tb1 = document.getElementById("hide");
+            tb1.style.display = "none";
+            // tb.style.display = "none";
+        }
     </script>
+
+    @* -------styles used -------------- *@
     <style>
         .card {
             padding: 50px;
@@ -228,7 +253,6 @@
             margin-left: 100px;
             margin-top: 50px;
         }
-
 
         .button {
             color: white;
@@ -255,6 +279,7 @@
 
         .grid {
             overflow: auto;
+            width: 50%;
         }
 
             .grid th {
@@ -264,6 +289,8 @@
                 font-weight: bold;
                 color: black;
                 background-color: #EEEEEE;
+                justify-content: flex-end;
+                align-content: baseline;
             }
 
             .grid td {
@@ -286,9 +313,22 @@
                 right: -1px;*/
                 z-index: 1;
             }
+
+        .Divbutton {
+            padding-left: 40px;
+            padding-top: 10px;
+        }
+
+        .tableContainer {
+            margin-left: 100px;
+            margin-top: 10px;
+            display: block;
+        }
     </style>
+
 </head>
 <body>
+    @*---------------Main-Table Content------------------- *@
     <div class="card">
         <h2 class="head">Personal Calculator </h2>
         <table>
@@ -297,7 +337,7 @@
                     <label class="head">Enter FirstNumber</label>
                 </td>
                 <td>
-                    <input type="text" id="txtnum1" class="form-control" name="num1" value="" />
+                    <input type="text" id="txtnum1" class="form-control" name="num1" value="" placeholder="Enter number" />
                 </td>
             </tr>
             <tr>
@@ -305,16 +345,16 @@
                     <label class="head">Enter SecondNumber</label>
                 </td>
                 <td>
-                    <input type="text" id="txtnum2" class="form-control" name="num2" value="" />
+                    <input type="text" id="txtnum2" class="form-control" name="num2" value="" placeholder="Enter number" />
                 </td>
             </tr>
         </table>
 
-        <div style="padding-left:40px;padding-top:10px;">
+        <div class="Divbutton">
             <table>
                 <tr>
                     <td>
-                        <input type="button" class="button" name="sum" id="btnsum" value="Add"  />
+                        <input type="button" class="button" name="sum" id="btnsum" value="Add" />
                     </td>
                     <td>
                         <input type="button" class="button" name="subtract" id="btnsub" value="Subtract" />
@@ -330,37 +370,37 @@
                 </tr>
             </table>
         </div>
+
         <div class="result">
             <span id="result"></span>
         </div>
     </div>
-    <div style="margin-left:100px;margin-top:10px">
-        @*<input type="button" class="button" name="data" id="btndata" value="History Data" onclick="getData();" />*@
-  
 
-        </div>
-    <div style="margin-left:100px;margin-top:10px">
-        <table class="grid" style="width:50%" >
+
+
+    @* ----------------------History Button--------- *@
+    @*<div style="margin-left:300px;margin-top:10px;">
+            <input type="button" class="button" name="data" id="btndata" value="History Data" onclick="getData();" />
+        </div>*@
+
+
+    @* -------------------History Table----------------- *@-
+    <div class="tableContainer">
+        <table class="grid" id="tblHistory">
             <thead>
                 <tr id="hide">
-                    <th>
-                        Id
-                    </th>
-                    <th>Number1</th>
-                    <th>Number2</th>
+                    <th>Id</th>
+                    <th>FirstNumber</th>
+                    <th>SecondNumber</th>
                     <th>Operation</th>
                     <th>Result</th>
                     <th>Created On</th>
                 </tr>
-
             </thead>
             <tbody id="tbldata">
             </tbody>
-
         </table>
     </div>
-
-
 
 </body>
 </html>
